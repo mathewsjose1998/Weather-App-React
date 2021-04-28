@@ -1,0 +1,74 @@
+.display-container{
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+   
+    flex-grow: 1;
+    flex-wrap: wrap;
+    animation: fadein 1.5s;
+    
+
+   
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+.location{
+    color: honeydew;
+    font-weight: 700;
+    flex-grow: 0.4;
+    max-width:40%;
+    
+}
+.place_name{
+    font-size: 50px;
+}
+.date{
+    font-size: 20px;
+}
+
+.weather-container{
+    flex-wrap: wrap;
+    padding-top: 20px;
+    flex: 1;
+    display: flex;
+    
+}
+.weather-image{
+    padding-top: 20px;
+    padding-left: 80px;
+    font-size: 70px;
+}
+.weather{
+    
+    margin-left: 40px;
+}
+.temp{
+    font-size: 60px;
+}
+.weather-condition{
+        font-size: 25px;
+        font-weight: 400;        
+}
+
+.data-box{
+    
+    color: white;
+    font-size: 20px;
+    
+
+   max-height: 300px;
+   flex-grow: 0.6;
+    
+    background-color: #FFFFFF33;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+
+}

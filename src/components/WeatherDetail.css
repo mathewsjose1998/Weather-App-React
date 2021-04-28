@@ -1,0 +1,10 @@
+
+.data-container{
+    display: flex;
+    flex-direction: column;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  
+}

@@ -1,0 +1,49 @@
+body{
+    background-image: url(https://github.com/rawfour/weather-app-react/blob/master/src/assets/2850815.jpg?raw=true);
+    background-size: cover;
+    background-repeat: no-repeat;
+  
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    margin: 20px;
+    color: rgb(88, 84, 84);
+}
+.main-container{
+    display: flex;
+   
+   
+    
+}
+.search{
+   
+    margin-top: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    
+   max-width: 450px;
+    background-color: white;
+    border-radius: 20px;
+}
+.search i{
+font-size: 25px;
+padding-left: 10px;
+color: gray;
+  
+}
+.input-box{
+height: 40px;
+max-width: 80%;
+border: none;
+padding-left: 10px;
+color: gray;
+font-size: 20px;
+
+}
+.input-box:focus{
+    outline: none;
+}
