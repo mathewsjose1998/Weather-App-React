@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Weather.css";
 import axios from "axios";
 import Display from "./Display";
 import DisplayError from "./DisplayError";
 
 let API_KEY = "a8e71c9932b20c4ceb0aed183e6a83bb";
+let cityname = sessionStorage.getItem("cityname");
 
 function Weather() {
   const [weathers, setWeather] = useState([]);
+  console.log(cityname);
+
+  useEffect(() => {
+    const getCurrentWeather = () => {
+      console.log(cityname);
+      var API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${API_KEY}&units=metric`;
+
+      axios
+        .get(API_URL)
+        .then((response) => {
+          console.log(response.data);
+          setWeather(response.data);
+        })
+        .catch((error) => {
+          setWeather("error");
+          console.log(weathers);
+          console.log(error);
+        });
+    };
+    getCurrentWeather();
+  }, [cityname]);
 
   function getweatherdata(city) {
     console.log(city);
-    const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+
+    var API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
     axios
       .get(API_URL)

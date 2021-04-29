@@ -1,11 +1,12 @@
 .display-container{
     display: flex;
     flex-direction: row;
-    margin: 30px;
    
+   margin-top: 20px;
     flex-grow: 1;
     flex-wrap: wrap;
     animation: fadein 1.5s;
+    padding-right: 30px;
     
 
    
@@ -24,10 +25,12 @@
     font-weight: 700;
     flex-grow: 0.4;
     max-width:40%;
+  
     
 }
 .place_name{
     font-size: 50px;
+    
 }
 .date{
     font-size: 20px;
