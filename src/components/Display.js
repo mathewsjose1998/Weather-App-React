@@ -49,21 +49,31 @@ function Display({ weatherData }) {
   };
 
   const getweatherImage = () => {
-    if (weatherData.weather[0].main == "Clouds")
+    if (weatherData.weather[0].main == "Clouds") {
+      document.body.style.backgroundImage =
+        "url('https://images.unsplash.com/photo-1482542307837-cb8c51cb106f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80')";
+
       return <i class="fas fa-cloud"></i>;
-    else if (
+    } else if (
       weatherData.weather[0].main == "Mist" ||
       weatherData.weather[0].main == "Haze" ||
       weatherData.weather[0].main == "Smoke"
-    )
+    ) {
+      document.body.style.backgroundImage =
+        "url('https://cdn.shopify.com/s/files/1/0765/0807/products/Dramatic_mountain_scene_wall_mural_mountain_wallpaper_removable_wallpaper_1800x1800.png.jpg?v=1569070306')";
       return <i class="fas fa-smog"></i>;
-    else if (weatherData.weather[0].main == "Clear")
+    } else if (weatherData.weather[0].main == "Clear") {
+      document.body.style.backgroundImage =
+        "url('https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/383870/f42a85705dcb548ce6d26dc657630dc72b03d7d0.jpg')";
       return <i class="far fa-sun"></i>;
-    else if (
+    } else if (
       weatherData.weather[0].main == "Rain" ||
       weatherData.weather[0].main == "Snow"
-    )
+    ) {
+      document.body.style.backgroundImage =
+        "url('https://img.buzzfeed.com/buzzfeed-static/static/2014-10/17/11/enhanced/webdr04/longform-original-5558-1413560450-10.jpg?downsize=600:*&output-format=auto&output-quality=auto')";
       return <i class="fas fa-cloud-showers-heavy"></i>;
+    }
   };
 
   return (

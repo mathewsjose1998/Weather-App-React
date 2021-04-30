@@ -47,11 +47,16 @@
     color: cornsilk;
 }
 .weathertype{
-    font-size: 28px;
+    color: rgb(202, 202, 202);
+    max-height: 25px;
+    font-size: 13px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .weather-images{
+    padding-top: 5px;
     font-size: 28px;
+    color: rgb(211, 204, 204);
 }
 
 .temprature{

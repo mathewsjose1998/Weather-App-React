@@ -43,7 +43,6 @@ function Forecast({ lat, lng, checkError }) {
       return <div></div>;
     } else {
       return forecasts.map((item) => {
-        // console.log(item);
         let datetime = item.dt_txt.split(" ");
         let date = datetime[0].slice(5);
         let time = datetime[1].slice(0, 5);
@@ -54,7 +53,7 @@ function Forecast({ lat, lng, checkError }) {
               <div className="dates">{date},</div>
               <div className="times">{time}</div>
             </div>
-            <div className="weathertype">{item.weather[0].main}</div>
+            <div className="weathertype">{item.weather[0].description}</div>
             <div className="weather-images">
               {getWeatherImage(item.weather[0].main)}
             </div>
