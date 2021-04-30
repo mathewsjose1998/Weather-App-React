@@ -15,7 +15,9 @@ function Weather() {
 
   useEffect(() => {
     const getCurrentWeather = () => {
-      var API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${API_KEY}&units=metric`;
+      let lng = sessionStorage.getItem("lng");
+      let lat = sessionStorage.getItem("lat");
+      var API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`;
       cityentered = cityname;
       axios
         .get(API_URL)
@@ -38,6 +40,7 @@ function Weather() {
     axios
       .get(API_URL)
       .then((response) => {
+        console.log(response.data);
         setWeather(response.data);
       })
       .catch((error) => {

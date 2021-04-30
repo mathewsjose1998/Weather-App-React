@@ -25,19 +25,9 @@ function CurrentLocation() {
     var geoAcc = pos.coords.accuracy.toFixed(1);
     console.log(geoLng);
     console.log(geoLat);
-    positionData(geoLat, geoLng);
+    sessionStorage.setItem("lat", geoLat);
+    sessionStorage.setItem("lng", geoLng);
   }
-
-  let positionData = (geoLat, geoLng) => {
-    const URL = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&";
-    const fullurl = `${URL}lat=${geoLat}&lon=${geoLng}`;
-
-    axios.get(fullurl).then((response) => {
-      console.log(response.data.address.village);
-      let cityname = response.data.address.village;
-      sessionStorage.setItem("cityname", cityname);
-    });
-  };
 
   function getPosErr(err) {
     switch (err.code) {
