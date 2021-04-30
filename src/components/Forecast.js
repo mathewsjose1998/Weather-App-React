@@ -5,13 +5,12 @@ import "./Forecast.css";
 const API_KEY = "a8e71c9932b20c4ceb0aed183e6a83bb";
 //let checkError = false;
 
-function Forecast({ value, checkError }) {
+function Forecast({ lat, lng, checkError }) {
   const [forecasts, setforecast] = useState([]);
 
-  console.log(value);
   useEffect(() => {
     const getforecast = () => {
-      const API_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${value}&APPID=${API_KEY}&units=metric`;
+      var API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`;
 
       axios
         .get(API_URL)
@@ -24,7 +23,7 @@ function Forecast({ value, checkError }) {
         });
     };
     getforecast();
-  }, [value]);
+  }, [lat]);
 
   const getWeatherImage = (weathertype) => {
     if (weathertype == "Clouds") return <i class="fas fa-cloud"></i>;

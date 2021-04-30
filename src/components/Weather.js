@@ -4,11 +4,14 @@ import axios from "axios";
 import Display from "./Display";
 import DisplayError from "./DisplayError";
 import Forecast from "./Forecast";
+import AutoComplete from "./AutoComplete";
 
 let API_KEY = "a8e71c9932b20c4ceb0aed183e6a83bb";
 let cityname = sessionStorage.getItem("cityname");
 let cityentered = "";
 let checkError = false;
+let latforecast = "";
+let lngforecast = "";
 
 function Weather() {
   const [weathers, setWeather] = useState([]);
@@ -19,6 +22,8 @@ function Weather() {
       let lat = sessionStorage.getItem("lat");
       var API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`;
       cityentered = cityname;
+      latforecast = lat;
+      lngforecast = lng;
       axios
         .get(API_URL)
         .then((response) => {
@@ -30,13 +35,53 @@ function Weather() {
         });
     };
     getCurrentWeather();
-  }, [cityname]);
+  }, []);
 
-  function getweatherdata(city) {
-    console.log(city);
+  //useEffect for search
 
-    var API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+  useEffect(() => {
+    const googleMapScript = document.createElement("script");
+    googleMapScript.src =
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyDYgoKKT7IsOpHwfxBdQE-TsHk4h_vw6OQ&libraries=places";
+    googleMapScript.async = true;
+
+    window.document.body.appendChild(googleMapScript);
+    googleMapScript.addEventListener("load", () => {
+      initAutoComplete();
+    });
+  }, []);
+
+  let autocomplete;
+  function initAutoComplete() {
+    autocomplete = new window.google.maps.places.Autocomplete(
+      document.getElementById("autocomplete"),
+      {
+        fields: ["place_id", "geometry", "name"],
+      }
+    );
+    autocomplete.addListener("place_changed", onPlaceChanged);
+  }
+  function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      document.getElementById("autocomplete").placeholder = "Enter a Place";
+    } else {
+      console.log(place.geometry.location.lat());
+      console.log(place.geometry.location.lng());
+
+      getweatherdata(
+        place.geometry.location.lat(),
+        place.geometry.location.lng(),
+        place.name
+      );
+    }
+  }
+
+  function getweatherdata(lat, lng, city) {
+    var API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`;
     cityentered = city;
+    latforecast = lat;
+    lngforecast = lng;
     axios
       .get(API_URL)
       .then((response) => {
@@ -49,14 +94,6 @@ function Weather() {
         console.log(error);
       });
   }
-
-  const handleEnter = (e) => {
-    if (e.key == "Enter") {
-      console.log(e.target.value);
-
-      getweatherdata(e.target.value);
-    }
-  };
 
   const showDisplay = () => {
     if (weathers == "error") {
@@ -77,7 +114,7 @@ function Weather() {
           <div className="search">
             <i className="fas fa-search"></i>
             <input
-              onKeyDown={handleEnter}
+              id="autocomplete"
               type="text"
               placeholder="enter the location"
               className="input-box"
@@ -88,7 +125,7 @@ function Weather() {
         {showDisplay()}
       </div>
 
-      <Forecast value={cityentered} checkError={checkError} />
+      <Forecast lat={latforecast} lng={lngforecast} checkError={checkError} />
     </div>
   );
 }
