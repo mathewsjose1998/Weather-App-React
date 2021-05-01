@@ -6,7 +6,7 @@ import DisplayError from "./DisplayError";
 import Forecast from "./Forecast";
 import AutoComplete from "./AutoComplete";
 
-let API_KEY = "a8e71c9932b20c4ceb0aed183e6a83bb";
+let API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 let cityname = sessionStorage.getItem("cityname");
 let cityentered = "";
 let checkError = false;
@@ -66,9 +66,6 @@ function Weather() {
     if (!place.geometry) {
       document.getElementById("autocomplete").placeholder = "Enter a Place";
     } else {
-      console.log(place.geometry.location.lat());
-      console.log(place.geometry.location.lng());
-
       getweatherdata(
         place.geometry.location.lat(),
         place.geometry.location.lng(),
@@ -85,12 +82,11 @@ function Weather() {
     axios
       .get(API_URL)
       .then((response) => {
-        console.log(response.data);
         setWeather(response.data);
       })
       .catch((error) => {
         setWeather("error");
-        console.log(weathers);
+
         console.log(error);
       });
   }

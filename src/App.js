@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./components/Footer";
 
 import Weather from "./components/Weather";
 import CurrentLocation from "./CurrentLocation";
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <CurrentLocation />
       <Weather />
+      <Footer />
     </div>
   );
 }

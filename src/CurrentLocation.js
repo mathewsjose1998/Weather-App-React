@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import Weather from "./components/Weather";
 
 function CurrentLocation() {
   useEffect(() => {
@@ -23,8 +21,7 @@ function CurrentLocation() {
     var geoLat = pos.coords.latitude.toFixed(5);
     var geoLng = pos.coords.longitude.toFixed(5);
     var geoAcc = pos.coords.accuracy.toFixed(1);
-    console.log(geoLng);
-    console.log(geoLat);
+
     sessionStorage.setItem("lat", geoLat);
     sessionStorage.setItem("lng", geoLng);
   }

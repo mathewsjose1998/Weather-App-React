@@ -7,7 +7,7 @@ function Display({ weatherData }) {
   useEffect(() => {
     const getDate = () => {
       let d = new Date();
-      console.log(d);
+
       const months = [
         "January",
         "February",
@@ -35,7 +35,7 @@ function Display({ weatherData }) {
       const date = `${days[currentDate.getDay()]} ${currentDate.getDate()} ${
         months[currentDate.getMonth()]
       }`;
-      console.log(date);
+
       setDate(date);
     };
     getDate();

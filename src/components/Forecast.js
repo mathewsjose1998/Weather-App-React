@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DisplayError from "./DisplayError";
 import "./Forecast.css";
-const API_KEY = "a8e71c9932b20c4ceb0aed183e6a83bb";
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 //let checkError = false;
 
 function Forecast({ lat, lng, checkError }) {
